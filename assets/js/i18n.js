@@ -27,9 +27,9 @@ window.I18N = {
 
     "invite.top": "Bismillahir Rohmanir Rohiym",
     "invite.title": "Aziz va hurmatli mehmonlar!",
-    "invite.text": "Hayotimizning eng baxtli va unutilmas kunida — farzandlarimiz {groom} va {bride}ning nikoh to'yi munosabati bilan beriladigan bazmi jamshidimizga Sizni oilangiz bilan lutfan taklif etamiz. Kuzning oltin bag'rida, yaqinlarimiz davrasida o'tadigan ushbu shohona oqshomni Siz bilan baham ko'rish biz uchun katta sharafdir.",
+    "invite.text": "Hayotimizning eng baxtli va unutilmas kunida — farzandlarimiz {groom}jon va {bride}xonning nikoh va visol oqshomi munosabati bilan tuziladigan dasturxonimizga sizni va oila a'zolaringizni lutfan taklif etib qolamiz. Oltin kuz faslida, yaqinlarimiz davrasida o'tadigan ushbu shohona oqshomni Siz bilan baham ko'rish biz uchun katta sharafdir.",
     "invite.respect": "Hurmat bilan,",
-    "invite.hosts": "Karimovlar va Rahimovlar oilasi",
+    "invite.hosts": "Choriyevlar oilasi",
 
     "story.title": "Bizning hikoyamiz",
     "story.1.t": "Yillar davomida bir-birimizni izladik",
@@ -90,9 +90,9 @@ window.I18N = {
 
     "invite.top": "Бисмиллаҳир Роҳманир Роҳийм",
     "invite.title": "Азиз ва ҳурматли меҳмонлар!",
-    "invite.text": "Ҳаётимизнинг энг бахтли ва унутилмас кунида — фарзандларимиз {groom} ва {bride}нинг никоҳ тўйи муносабати билан бериладиган базми жамшидимизга Сизни оилангиз билан лутфан таклиф этамиз. Кузнинг олтин бағрида, яқинларимиз даврасида ўтадиган ушбу шоҳона оқшомни Сиз билан баҳам кўриш биз учун катта шарафдир.",
+    "invite.text": "Ҳаётимизнинг энг бахтли ва унутилмас кунида — фарзандларимиз {groom}жон ва {bride}хоннинг никоҳ ва висол оқшоми муносабати билан тузиладиган дастурхонимизга сизни ва оила аъзоларингизни лутфан таклиф этиб қоламиз. Олтин куз фаслида, яқинларимиз даврасида ўтадиган ушбу шоҳона оқшомни Сиз билан баҳам кўриш биз учун катта шарафдир.",
     "invite.respect": "Ҳурмат билан,",
-    "invite.hosts": "Каримовлар ва Раҳимовлар оиласи",
+    "invite.hosts": "Чориевлар оиласи",
 
     "story.title": "Бизнинг ҳикоямиз",
     "story.1.t": "Йиллар давомида бир-биримизни изладик",

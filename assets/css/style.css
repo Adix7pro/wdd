@@ -15,11 +15,12 @@
   --line: rgba(247, 220, 156, .35);
   --serif: "Cormorant Garamond", Georgia, serif;
   --script: "Great Vibes", "Marck Script", cursive;
+  --script-names: "Parisienne", "Marck Script", cursive;
   --sans: "Montserrat", system-ui, sans-serif;
   --radius: 22px;
   --ease: cubic-bezier(.2, .7, .1, 1);
 }
-html[data-lang="cyr"] { --script: "Marck Script", "Great Vibes", cursive; }
+html[data-lang="cyr"] { --script: "Marck Script", "Great Vibes", cursive; --script-names: "Marck Script", cursive; }
 
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -113,7 +114,7 @@ button { font: inherit; cursor: pointer; }
   text-transform: uppercase; color: var(--ink-soft); margin: 18px 0 4px;
 }
 .intro__names {
-  font-family: var(--script); font-weight: 400;
+  font-family: var(--script-names); font-weight: 400;
   font-size: clamp(44px, 11vw, 84px); line-height: 1.2; margin: 0; padding: 0 .35em;
   background: var(--gold); background-size: 200% auto;
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -126,7 +127,7 @@ button { font: inherit; cursor: pointer; }
 .seal svg { width: 100%; height: 100%; }
 .seal__mono {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font-family: var(--script); font-size: 40px; line-height: 1; white-space: nowrap; color: #f6d9a3;
+  font-family: var(--script-names); font-size: 40px; line-height: 1; white-space: nowrap; color: #f6d9a3;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .25), 0 -1px 1px rgba(0, 0, 0, .5);
 }
 .seal__mono > * { display: inline; }
@@ -285,7 +286,7 @@ main { position: relative; }
 }
 .hero__text { order: 2; }
 .hero__names {
-  font-family: var(--script); font-weight: 400;
+  font-family: var(--script-names); font-weight: 400;
   font-size: clamp(64px, 16vw, 132px); line-height: 1.05; margin: 0; padding: 0 .3em;
   display: flex; flex-direction: column; align-items: center;
   background: var(--gold); background-size: 200% auto;
@@ -355,6 +356,7 @@ main { position: relative; }
 
 /* ================= Taklif ================= */
 #invite .card { max-width: 780px; margin: 0 auto; }
+.bismillah-ar { font-family: "Amiri", "Traditional Arabic", serif; font-size: clamp(28px, 5vw, 38px); line-height: 1.6; color: var(--wine); margin: 0 0 2px; }
 .bismillah { font-family: var(--sans); font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #a0652b; margin: 0 0 14px; }
 .invite__text { font-size: clamp(19px, 2.4vw, 22px); line-height: 1.75; margin: 0 auto; max-width: 620px; }
 .invite__hosts { margin: 26px 0 0; font-style: italic; }
@@ -437,7 +439,7 @@ main { position: relative; }
 .footer__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(27, 14, 7, .35) 30%, rgba(27, 14, 7, .55) 65%, var(--bg) 100%); }
 .footer__body { position: relative; }
 .footer__body .title-script { margin-bottom: 4px; }
-.footer__names { font-family: var(--script); font-weight: 400; font-size: clamp(40px, 9vw, 70px); margin: 0; line-height: 1.15; color: var(--ink); text-shadow: 0 4px 20px rgba(0, 0, 0, .7); }
+.footer__names { font-family: var(--script-names); font-weight: 400; font-size: clamp(40px, 9vw, 70px); margin: 0; line-height: 1.15; color: var(--ink); text-shadow: 0 4px 20px rgba(0, 0, 0, .7); }
 .footer__names em { font-style: normal; color: var(--gold-1); }
 .footer__date { font-family: var(--sans); letter-spacing: .4em; color: var(--gold-1); margin: 8px 0 18px; }
 .footer__contact { font-family: var(--sans); font-size: 14px; color: var(--ink-soft); margin: 0; }
