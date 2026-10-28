@@ -47,6 +47,7 @@ window.I18N = {
     "venue.google": "Google xarita",
     "venue.yandex": "Yandex xarita",
     "venue.calendar": "Kalendarga qo'shish",
+    "venue.showmap": "Xaritani ko'rish",
 
     "dress.title": "Libos uslubi",
     "dress.text": "Kuz ranglaridagi liboslar bilan kelsangiz, oqshomimiz yanada go'zal bo'ladi:",
@@ -110,6 +111,7 @@ window.I18N = {
     "venue.google": "Google харита",
     "venue.yandex": "Яндекс харита",
     "venue.calendar": "Календарга қўшиш",
+    "venue.showmap": "Харитани кўриш",
 
     "dress.title": "Либос услуби",
     "dress.text": "Куз рангларидаги либослар билан келсангиз, оқшомимиз янада гўзал бўлади:",

@@ -189,9 +189,20 @@ musicBtn.addEventListener("click", () => {
   let last = performance.now(), running = true;
   const minFrame = lite ? 1000 / 40 : 0; // telefonda ~40 fps yetarli va batareyani tejaydi
 
+  // Telefonda skroll paytida barglarni muzlatamiz: brauzer butun kuchini skrollga beradi
+  let scrolling = false, scrollTimer = 0;
+  if (lite) {
+    addEventListener("scroll", () => {
+      scrolling = true;
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => { scrolling = false; last = performance.now(); }, 160);
+    }, { passive: true });
+  }
+
   function frame(now) {
     if (!running) return;
     requestAnimationFrame(frame);
+    if (scrolling) return;
     const elapsed = now - last;
     if (elapsed < minFrame) return;
     const k = Math.min(elapsed / 16.67, 3); // kadr tezligidan qat'i nazar bir xil harakat
@@ -272,7 +283,20 @@ $$(".reveal").forEach(el => io.observe(el));
 /* ---------- Xarita ---------- */
 (function map() {
   const { lat, lng } = CONFIG.venue;
-  $("#mapFrame").src = `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed`;
+  // Google xarita og'ir (ko'p JS) — telefonda faqat bosilganda, kompyuterda ko'ringanda yuklanadi
+  const frame = $("#mapFrame");
+  const box = $(".venue__map");
+  const load = () => {
+    if (frame.src) return;
+    frame.src = `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed`;
+    box.classList.add("loaded");
+  };
+  $("#mapLoad").addEventListener("click", load);
+  if (!document.documentElement.classList.contains("lite")) {
+    new IntersectionObserver((es, o) => {
+      if (es.some(e => e.isIntersecting)) { load(); o.disconnect(); }
+    }, { rootMargin: "200px" }).observe(box);
+  }
   $("#gmapsBtn").href = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
   $("#ymapsBtn").href = `https://yandex.uz/maps/?pt=${lng},${lat}&z=17&l=map`;
 })();
