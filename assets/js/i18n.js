@@ -6,10 +6,9 @@ window.I18N = {
     "intro.open": "Taklifnomani ochish",
 
     "nav.invite": "Taklif",
-    "nav.program": "Dastur",
+    "nav.story": "Hikoya",
     "nav.venue": "Manzil",
     "nav.gallery": "Galereya",
-    "nav.rsvp": "Javob",
 
     "date.short": "28 · 11 · 2026",
     "date.weekday": "Shanba",
@@ -40,7 +39,6 @@ window.I18N = {
     "story.3.t": "Uzoq vaqt kutilishlar tunni tonga almashtirdi",
     "story.3.d": "Endi esa biz oila qurmoqdamiz. Ushbu baxtli kunda yonimizda bo'lishingizni chin dildan istaymiz!",
 
-
     "venue.title": "To'y manzili",
     "venue.kicker": "To'yxona",
     "venue.name": "«Asilbek» to'yxonasi",
@@ -60,19 +58,6 @@ window.I18N = {
 
     "gallery.title": "Baxtli lahzalar",
 
-    "rsvp.title": "Ishtirokingizni tasdiqlang",
-    "rsvp.sub": "Iltimos, 20-noyabrgacha javob bering",
-    "rsvp.name": "Ism va familiyangiz",
-    "rsvp.attend": "To'yga kelasizmi?",
-    "rsvp.yes": "Albatta kelaman",
-    "rsvp.no": "Afsuski, kela olmayman",
-    "rsvp.guests": "Mehmonlar soni",
-    "rsvp.wish": "Kelin-kuyovga tilaklaringiz",
-    "rsvp.send": "Javob yuborish",
-    "rsvp.thanks": "Rahmat! Javobingiz qabul qilindi 🍂",
-    "rsvp.err": "Iltimos, ismingizni kiriting",
-    "rsvp.msg": "To'y taklifnomasiga javob",
-
     "footer.wait": "Sizni intizorlik bilan kutamiz",
     "footer.contact": "Aloqa uchun:",
 
@@ -80,14 +65,13 @@ window.I18N = {
   },
 
   cyr: {
-    "intro.kicker": "Сизни тўйимизга таклиф этамиз",
+    "intro.kicker": "Сизни никоҳ оқшомига таклиф этамиз",
     "intro.open": "Таклифномани очиш",
 
     "nav.invite": "Таклиф",
-    "nav.program": "Дастур",
+    "nav.story": "Ҳикоя",
     "nav.venue": "Манзил",
     "nav.gallery": "Галерея",
-    "nav.rsvp": "Жавоб",
 
     "date.short": "28 · 11 · 2026",
     "date.weekday": "Шанба",
@@ -111,30 +95,18 @@ window.I18N = {
     "invite.hosts": "Каримовлар ва Раҳимовлар оиласи",
 
     "story.title": "Бизнинг ҳикоямиз",
-    "story.1.t": "Илк учрашув",
-    "story.1.d": "Кузнинг ёмғирли кунида, эски кутубхонада тасодифан учрашдик — ва бир пиёла чой бутун ҳаётни ўзгартирди.",
-    "story.2.t": "Севги изҳори",
-    "story.2.d": "Чорвоқ тоғлари бағрида, олтин япроқлар остида «Ҳа» деган энг муҳим сўз янгради.",
-    "story.3.t": "Никоҳ тўйи",
+    "story.1.t": "Йиллар давомида бир-биримизни изладик",
+    "story.1.d": "Илиқ кунларнинг тафти билан, бир-биримизни топдик ва ҳаётимизнинг энг гўзал даврини бирга ўтказишга қарор қилдик.",
+    "story.2.t": "Тақдирнинг ажойиб-у ғаройиб туҳфалари",
+    "story.2.d": "Куз, октябрь ойининг 21-куни ота-оналаримизнинг розилиги билан, биз бир-биримизга бўлган муҳаббатимизни эълон қилдик ва ҳаётимизнинг энг муҳим сўзини айтдик: «Ҳа»!",
+    "story.3.t": "Узоқ вақт кутилишлар тунни тонга алмаштирди",
     "story.3.d": "Энди эса биз оила қурмоқдамиз. Ушбу бахтли кунда ёнимизда бўлишингизни чин дилдан истаймиз!",
-
-    "program.title": "Тўй дастури",
-    "program.1.t": "Меҳмонларни кутиб олиш",
-    "program.1.d": "Welcome-drink, жонли мусиқа ва кузги фотозона",
-    "program.2.t": "Никоҳ маросими",
-    "program.2.d": "Келин-куёвнинг тантанали кириши ва аҳд",
-    "program.3.t": "Базм ва зиёфат",
-    "program.3.d": "Миллий ва Европа таомлари, самимий табриклар",
-    "program.4.t": "Биринчи рақс",
-    "program.4.d": "Келин-куёвнинг илк рақси ва тўй торти",
-    "program.5.t": "Байрамона салют",
-    "program.5.d": "Оқшомни ёрқин оташинлар билан якунлаймиз",
 
     "venue.title": "Тўй манзили",
     "venue.kicker": "Тўйхона",
-    "venue.name": "«Олтин Куз» саройи",
-    "venue.addr": "Тошкент ш., Юнусобод тумани, Амир Темур кўчаси, 108-уй",
-    "venue.mark": "Мўлжал: Минор масжиди ёнида",
+    "venue.name": "«Асилбек» тўйхонаси",
+    "venue.addr": "Қашқадарё вил., Нишон тумани",
+    "venue.mark": "Мўлжал: Нишон тумани маркази, «Асилбек» тўйхонаси",
     "venue.google": "Google харита",
     "venue.yandex": "Яндекс харита",
     "venue.calendar": "Календарга қўшиш",
@@ -148,19 +120,6 @@ window.I18N = {
     "dress.c5": "Зайтун",
 
     "gallery.title": "Бахтли лаҳзалар",
-
-    "rsvp.title": "Иштирокингизни тасдиқланг",
-    "rsvp.sub": "Илтимос, 20 ноябргача жавоб беринг",
-    "rsvp.name": "Исм ва фамилиянгиз",
-    "rsvp.attend": "Тўйга келасизми?",
-    "rsvp.yes": "Албатта келаман",
-    "rsvp.no": "Афсуски, кела олмайман",
-    "rsvp.guests": "Меҳмонлар сони",
-    "rsvp.wish": "Келин-куёвга тилакларингиз",
-    "rsvp.send": "Жавоб юбориш",
-    "rsvp.thanks": "Раҳмат! Жавобингиз қабул қилинди 🍂",
-    "rsvp.err": "Илтимос, исмингизни киритинг",
-    "rsvp.msg": "Тўй таклифномасига жавоб",
 
     "footer.wait": "Сизни интизорлик билан кутамиз",
     "footer.contact": "Алоқа учун:",
