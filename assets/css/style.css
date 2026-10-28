@@ -331,7 +331,7 @@ main { position: relative; }
 @media (min-width: 900px) {
   .hero { grid-template-columns: 1.1fr .9fr; text-align: left; gap: 60px; }
   .hero__text { order: 1; }
-  .hero__names { align-items: flex-start; }
+  .hero__names { align-items: flex-start; font-size: clamp(60px, 8vw, 112px); }
   .hero__names em { padding-left: .9em; }
   .hero .ornament { margin-left: 0; }
   .hero__quote { margin-left: 0; }
@@ -450,6 +450,22 @@ main { position: relative; }
   body { font-size: 18px; }
   .dock a { padding: 9px 9px; font-size: 10.5px; }
   .hero__date { gap: 12px; }
+}
+
+/* ================= Arabcha qatorlar ================= */
+.ar {
+  font-family: "Amiri", "Traditional Arabic", serif; text-align: center;
+  font-size: clamp(20px, 3.6vw, 28px); line-height: 1.5; color: var(--gold-1);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .55);
+  margin: -8px 0 22px;
+}
+.section__title + .ar { margin: -20px 0 30px; }
+.title-script + .ar { margin: -10px 0 20px; }
+.ar--names { font-size: clamp(24px, 5vw, 36px); font-weight: 700; margin: 2px 0 10px; }
+.intro .ar--names { margin: -4px 0 4px; }
+.footer .ar { margin: 0 0 6px; }
+@media (min-width: 900px) {
+  .hero .ar--names { text-align: left; padding-left: .4em; }
 }
 
 /* ================= Telefon / kuchsiz qurilmalar =================

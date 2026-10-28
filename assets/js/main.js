@@ -3,8 +3,9 @@
    ================================================================ */
 const CONFIG = {
   names: {
-    lat: { groom: "Adham", bride: "Sevinch" },
-    cyr: { groom: "Адҳам", bride: "Севинч" }
+    lat: { groom: "Adhamjon", bride: "Sevinchxon" },
+    cyr: { groom: "Адҳамжон", bride: "Севинчхон" },
+    ar:  { groom: "أدهمجان", bride: "سيوينچخان" }
   },
   // To'y vaqti (Toshkent, UTC+5)
   date: "2026-11-28T18:00:00+05:00",
@@ -44,6 +45,7 @@ function applyLang(next) {
   $$("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
   $$("[data-name]").forEach(el => { el.textContent = n[el.dataset.name]; });
   $$("[data-names]").forEach(el => { el.innerHTML = `${n.groom} <em>&amp;</em> ${n.bride}`; });
+  $$("[data-names-ar]").forEach(el => { el.textContent = `${CONFIG.names.ar.groom} و ${CONFIG.names.ar.bride}`; });
   $$("[data-mono]").forEach(el => { el.innerHTML = `${n.groom[0]}<i>&amp;</i>${n.bride[0]}`; });
   $$("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   document.title = `${n.groom} & ${n.bride} — ${lang === "cyr" ? "Тўй таклифномаси" : "To'y taklifnomasi"}`;
