@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Adham & Sevinch — To'y taklifnomasi</title>
+  <meta name="description" content="28 noyabr 2026 — Adham va Sevinchning nikoh to'yiga taklifnoma">
+  <meta name="theme-color" content="#1b0e07">
+  <meta property="og:title" content="Adham & Sevinch — To'y taklifnomasi">
+  <meta property="og:description" content="28 noyabr 2026, 18:00 — Sizni to'yimizga taklif etamiz!">
+  <meta property="og:image" content="assets/img/hero-couple.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/bg-forest.jpg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="locked">
+
+  <!-- ===== Fon: kuzgi o'rmon + nur + barglar ===== -->
+  <div class="scene" aria-hidden="true">
+    <div class="scene__img"></div>
+    <div class="scene__rays"></div>
+    <div class="scene__tint"></div>
+    <canvas id="leaves"></canvas>
+    <div class="scene__vignette"></div>
+  </div>
+
+  <!-- ===== Kirish (eshiklar) ===== -->
+  <div class="intro" id="intro">
+    <div class="intro__door intro__door--l"></div>
+    <div class="intro__door intro__door--r"></div>
+    <div class="intro__content">
+      <div class="lang lang--intro" role="group" aria-label="Til / Тил">
+        <button type="button" data-lang="lat">Lotin</button>
+        <button type="button" data-lang="cyr">Кирилл</button>
+      </div>
+      <p class="intro__kicker" data-i18n="intro.kicker"></p>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="sealG" cx="40%" cy="35%" r="70%">
+              <stop offset="0" stop-color="#d8572a"/>
+              <stop offset=".55" stop-color="#9c2a12"/>
+              <stop offset="1" stop-color="#5e1708"/>
+            </radialGradient>
+          </defs>
+          <path fill="url(#sealG)" d="M100 6c10 0 14 9 23 11s18-3 24 5 3 17 9 24 15 8 17 17-6 15-6 25 8 15 6 24-12 11-17 18-3 17-10 23-15 0-24 4-12 13-22 13-14-9-23-11-18 3-24-5-3-17-9-24-15-8-17-17 6-15 6-25-8-15-6-24 12-11 17-18 3-17 10-23 15 0 24-4 12-13 22-13z"/>
+          <circle cx="100" cy="100" r="62" fill="none" stroke="#f3c98b" stroke-opacity=".55" stroke-width="2"/>
+          <circle cx="100" cy="100" r="56" fill="none" stroke="#f3c98b" stroke-opacity=".3" stroke-width="1"/>
+        </svg>
+        <span class="seal__mono" data-mono></span>
+      </div>
+      <h1 class="intro__names" data-names></h1>
+      <p class="intro__date" data-i18n="date.short"></p>
+      <button type="button" class="btn btn--gold" id="openInvite">
+        <span data-i18n="intro.open"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Til tanlash + musiqa ===== -->
+  <div class="topbar">
+    <div class="lang" role="group" aria-label="Til / Тил">
+      <button type="button" data-lang="lat">Lot</button>
+      <button type="button" data-lang="cyr">Кир</button>
+    </div>
+    <button type="button" class="music" id="musicBtn" hidden aria-label="Musiqa">
+      <span></span><span></span><span></span><span></span>
+    </button>
+    <audio id="music" src="assets/audio/music.mp3" loop preload="none"></audio>
+  </div>
+
+  <nav class="dock" aria-label="Bo'limlar">
+    <a href="#invite" data-i18n="nav.invite"></a>
+    <a href="#venue" data-i18n="nav.venue"></a>
+    <a href="#gallery" data-i18n="nav.gallery"></a>
+  </nav>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top">
+      <div class="hero__text">
+        <p class="kicker reveal" data-i18n="hero.kicker"></p>
+        <h2 class="hero__names reveal">
+          <span data-name="groom"></span>
+          <em>&amp;</em>
+          <span data-name="bride"></span>
+        </h2>
+        <div class="ornament reveal" aria-hidden="true"></div>
+        <div class="hero__date reveal">
+          <span data-i18n="date.weekday"></span>
+          <b>28</b>
+          <span><i data-i18n="date.month"></i><br>2026</span>
+          <span class="hero__time">18:00</span>
+        </div>
+        <p class="hero__quote reveal" data-i18n="hero.quote"></p>
+        <a href="#invite" class="scroll-cue reveal" aria-label="Pastga">
+          <span></span>
+        </a>
+      </div>
+      <figure class="arch reveal">
+        <div class="arch__frame">
+          <img src="assets/img/hero-couple.jpg" alt="" fetchpriority="high">
+        </div>
+        <svg class="arch__leaves" viewBox="0 0 400 140" aria-hidden="true">
+          <use href="#leafSprig" x="0" y="0"/>
+        </svg>
+      </figure>
+    </section>
+
+    <!-- ===== COUNTDOWN ===== -->
+    <section class="section countdown-wrap">
+      <div class="card card--glass reveal">
+        <h3 class="title-script" data-i18n="count.title"></h3>
+        <div class="countdown" id="countdown">
+          <div><b data-cd="d">00</b><span data-i18n="count.d"></span></div>
+          <div><b data-cd="h">00</b><span data-i18n="count.h"></span></div>
+          <div><b data-cd="m">00</b><span data-i18n="count.m"></span></div>
+          <div><b data-cd="s">00</b><span data-i18n="count.s"></span></div>
+        </div>
+        <p class="countdown__done" id="cdDone" hidden data-i18n="count.done"></p>
+      </div>
+    </section>
+
+    <!-- ===== TAKLIF MATNI ===== -->
+    <section class="section" id="invite">
+      <div class="card card--paper reveal">
+        <span class="corner corner--tl"></span><span class="corner corner--tr"></span>
+        <span class="corner corner--bl"></span><span class="corner corner--br"></span>
+        <p class="bismillah" data-i18n="invite.top"></p>
+        <h3 class="title" data-i18n="invite.title"></h3>
+        <div class="ornament ornament--dark" aria-hidden="true"></div>
+        <p class="invite__text" data-i18n="invite.text"></p>
+        <p class="invite__hosts">
+          <span data-i18n="invite.respect"></span><br>
+          <b data-i18n="invite.hosts"></b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== HIKOYA ===== -->
+    <section class="section" id="story">
+      <h3 class="section__title reveal" data-i18n="story.title"></h3>
+      <div class="story">
+        <article class="story__item reveal">
+          <div class="story__img"><img src="assets/img/g6.jpg" alt="" loading="lazy"></div>
+          <div class="story__body">
+            <span class="story__year">2022</span>
+            <h4 data-i18n="story.1.t"></h4>
+            <p data-i18n="story.1.d"></p>
+          </div>
+        </article>
+        <article class="story__item reveal">
+          <div class="story__img"><img src="assets/img/g2.jpg" alt="" loading="lazy"></div>
+          <div class="story__body">
+            <span class="story__year">2024</span>
+            <h4 data-i18n="story.2.t"></h4>
+            <p data-i18n="story.2.d"></p>
+          </div>
+        </article>
+        <article class="story__item reveal">
+          <div class="story__img"><img src="assets/img/g7.jpg" alt="" loading="lazy"></div>
+          <div class="story__body">
+            <span class="story__year">2026</span>
+            <h4 data-i18n="story.3.t"></h4>
+            <p data-i18n="story.3.d"></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== MANZIL ===== -->
+    <section class="section" id="venue">
+      <h3 class="section__title reveal" data-i18n="venue.title"></h3>
+      <div class="venue card card--glass reveal">
+        <div class="venue__info">
+          <p class="kicker" data-i18n="venue.kicker"></p>
+          <h4 class="venue__name" data-i18n="venue.name"></h4>
+          <p class="venue__addr" data-i18n="venue.addr"></p>
+          <p class="venue__mark" data-i18n="venue.mark"></p>
+          <div class="venue__when">
+            <span data-i18n="date.full"></span>
+          </div>
+          <div class="btns">
+            <a class="btn btn--gold" id="gmapsBtn" target="_blank" rel="noopener"><span data-i18n="venue.google"></span></a>
+            <a class="btn btn--ghost" id="ymapsBtn" target="_blank" rel="noopener"><span data-i18n="venue.yandex"></span></a>
+            <button type="button" class="btn btn--ghost" id="icsBtn"><span data-i18n="venue.calendar"></span></button>
+          </div>
+        </div>
+        <div class="venue__map">
+          <iframe id="mapFrame" title="Xarita" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DRESS CODE ===== -->
+    <section class="section">
+      <div class="card card--glass dress reveal">
+        <h3 class="title-script" data-i18n="dress.title"></h3>
+        <p data-i18n="dress.text"></p>
+        <ul class="swatches">
+          <li style="--c:#7a1f12"><span data-i18n="dress.c1"></span></li>
+          <li style="--c:#b5491b"><span data-i18n="dress.c2"></span></li>
+          <li style="--c:#d9963a"><span data-i18n="dress.c3"></span></li>
+          <li style="--c:#efe1c6"><span data-i18n="dress.c4"></span></li>
+          <li style="--c:#4a5a2c"><span data-i18n="dress.c5"></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== GALEREYA ===== -->
+    <section class="section section--wide" id="gallery">
+      <h3 class="section__title reveal" data-i18n="gallery.title"></h3>
+      <div class="gallery">
+        <a href="assets/img/g1.jpg" class="reveal"><img src="assets/img/g1.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/g3.jpg" class="reveal tall"><img src="assets/img/g3.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/g4.jpg" class="reveal"><img src="assets/img/g4.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/hero-couple.jpg" class="reveal tall"><img src="assets/img/hero-couple.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/g5.jpg" class="reveal tall"><img src="assets/img/g5.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/g8.jpg" class="reveal tall"><img src="assets/img/g8.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/g9.jpg" class="reveal tall"><img src="assets/img/g9.jpg" alt="" loading="lazy"></a>
+        <a href="assets/img/g10.jpg" class="reveal tall"><img src="assets/img/g10.jpg" alt="" loading="lazy"></a>
+      </div>
+    </section>
+
+    </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__img"><img src="assets/img/footer.jpg" alt="" loading="lazy"></div>
+    <div class="footer__body">
+      <p class="title-script" data-i18n="footer.wait"></p>
+      <h2 class="footer__names"><span data-name="groom"></span> <em>&amp;</em> <span data-name="bride"></span></h2>
+      <p class="footer__date" data-i18n="date.short"></p>
+      <p class="footer__contact"><span data-i18n="footer.contact"></span> <a id="phoneLink"></a></p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button type="button" class="lightbox__close" aria-label="Yopish">×</button>
+    <button type="button" class="lightbox__nav lightbox__prev" aria-label="Oldingi">‹</button>
+    <img alt="">
+    <button type="button" class="lightbox__nav lightbox__next" aria-label="Keyingi">›</button>
+  </div>
+
+  <!-- SVG sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="goldG" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#f7dc9c"/><stop offset=".5" stop-color="#c8913e"/><stop offset="1" stop-color="#f1cf86"/>
+      </linearGradient>
+      <symbol id="maple" viewBox="0 0 100 100">
+        <path d="M50 2 56 20 66 13 63 33 80 23 76 36 96 37 84 49 92 55 68 62 72 73 54 67 52 98 48 98 46 67 28 73 32 62 8 55 16 49 4 37 24 36 20 23 37 33 34 13 44 20Z"/>
+      </symbol>
+      <symbol id="leafSprig" viewBox="0 0 400 140">
+        <path d="M10 120 C120 60 280 60 390 120" fill="none" stroke="url(#goldG)" stroke-width="2"/>
+        <use href="#maple" x="40" y="62" width="44" height="44" fill="#b5491b" transform="rotate(-25 62 84)"/>
+        <use href="#maple" x="96" y="46" width="36" height="36" fill="#d9963a" transform="rotate(12 114 64)"/>
+        <use href="#maple" x="176" y="30" width="48" height="48" fill="#8e2a12"/>
+        <use href="#maple" x="268" y="46" width="36" height="36" fill="#d9963a" transform="rotate(-12 286 64)"/>
+        <use href="#maple" x="316" y="62" width="44" height="44" fill="#b5491b" transform="rotate(25 338 84)"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
