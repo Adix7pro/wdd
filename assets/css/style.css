@@ -361,8 +361,29 @@ main { position: relative; }
 .bismillah-ar { font-family: "Amiri", "Traditional Arabic", serif; font-size: clamp(28px, 5vw, 38px); line-height: 1.6; color: var(--wine); margin: 0 0 2px; }
 .bismillah { font-family: var(--sans); font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #a0652b; margin: 0 0 14px; }
 .invite__text { font-size: clamp(19px, 2.4vw, 22px); line-height: 1.75; margin: 0 auto; max-width: 620px; }
-.invite__hosts { margin: 26px 0 0; font-style: italic; }
-.invite__hosts b { font-style: normal; font-weight: 600; font-size: 1.15em; color: var(--wine); }
+.invite__hosts { display: flex; flex-direction: column; align-items: center; margin: 0; padding-bottom: 4px; }
+.invite__respect {
+  position: relative; font-style: italic; font-size: clamp(17px, 2.4vw, 22px); color: #8a5a2c; padding: 0 30px;
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .invite__respect { padding: 0 24px; }
+  .invite__respect::before, .invite__respect::after { width: 14px; }
+  .invite__sign .kid { width: 58px; }
+}
+.invite__respect::before, .invite__respect::after {
+  content: ""; position: absolute; top: 55%; width: 22px; height: 1px;
+  background: linear-gradient(90deg, transparent, #b07a3a);
+}
+.invite__respect::before { left: 0; }
+.invite__respect::after { right: 0; transform: scaleX(-1); }
+.invite__family {
+  font-family: var(--script-names); font-weight: 400; line-height: 1.15;
+  font-size: clamp(34px, 6.4vw, 54px); margin-top: 2px;
+  background: linear-gradient(115deg, #7a1f12 0%, #b5491b 45%, #9a6a1c 70%, #7a1f12 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  padding: 0 .2em;
+}
 
 /* ================= Hikoya ================= */
 .story { display: grid; gap: 22px; }
@@ -456,7 +477,7 @@ main { position: relative; }
 /* ================= Taklif kartasi bezaklari ================= */
 .card--invite {
   padding-top: calc(clamp(28px, 5vw, 56px) + 40px);
-  padding-bottom: calc(clamp(28px, 5vw, 56px) + clamp(70px, 12vw, 110px));
+  padding-bottom: clamp(28px, 4vw, 44px);
   padding-left: clamp(36px, 7vw, 72px); padding-right: clamp(36px, 7vw, 72px);
 }
 .card--invite > :not(.deco):not(.corner) { position: relative; z-index: 1; }
@@ -471,12 +492,18 @@ main { position: relative; }
 .deco-vine--l { left: 10px; }
 .deco-vine--r { right: 10px; transform: translateY(-50%) scaleX(-1); }
 
-.kid { bottom: 10px; width: clamp(62px, 11vw, 100px); height: auto; transform-origin: 50% 100%; }
-.kid--groom { left: clamp(14px, 4vw, 40px); animation: sway 4.5s ease-in-out infinite; }
-.kid--bride { right: clamp(14px, 4vw, 40px); animation: sway 4.5s ease-in-out infinite reverse; }
+/* Imzo qatori: kuyov bola — oila nomi va uzuklar — kelin qiz */
+.invite__sign {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: end;
+  gap: clamp(4px, 2vw, 20px); margin: clamp(22px, 4vw, 34px) clamp(-24px, -3vw, -8px) 0;
+}
+.invite__sign .deco { position: static; }
+.kid { width: clamp(64px, 11vw, 104px); height: auto; transform-origin: 50% 100%; }
+.kid--groom { animation: sway 4.5s ease-in-out infinite; }
+.kid--bride { animation: sway 4.5s ease-in-out infinite reverse; }
 @keyframes sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
 
-.deco-rings { bottom: clamp(18px, 3vw, 30px); left: 50%; width: clamp(56px, 9vw, 80px); height: auto; transform: translateX(-50%); }
+.deco-rings { display: block; width: clamp(56px, 9vw, 78px); height: auto; margin: 6px auto 0; }
 .deco-rings .spark { transform-box: fill-box; transform-origin: center; animation: spark 2.6s ease-in-out infinite; }
 .deco-rings .spark--2 { animation-delay: -1.3s; }
 @keyframes spark { 0%, 100% { transform: scale(.6); opacity: .4; } 50% { transform: scale(1.15); opacity: 1; } }
