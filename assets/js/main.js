@@ -75,33 +75,72 @@ musicBtn.addEventListener("click", () => {
   else { music.pause(); musicBtn.classList.remove("on"); }
 });
 
-/* ---------- Barglar va oltin uchqunlar ---------- */
+/* ---------- Barglar va oltin uchqunlar ----------
+   Barglar oldindan tayyorlangan rasmchalar (sprite) sifatida chiziladi:
+   har kadrda path, gradient yoki filter hisoblanmaydi — telefonda ham silliq. */
 (function leaves() {
   const cv = $("#leaves");
-  const ctx = cv.getContext("2d");
+  const ctx = cv.getContext("2d", { alpha: true });
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const maple = new Path2D("M50 2 56 20 66 13 63 33 80 23 76 36 96 37 84 49 92 55 68 62 72 73 54 67 52 98 48 98 46 67 28 73 32 62 8 55 16 49 4 37 24 36 20 23 37 33 34 13 44 20Z");
-  const oval = new Path2D("M50 2C82 24 86 64 50 98 14 64 18 24 50 2Z M50 6 L50 96");
-  const birch = new Path2D("M50 4C74 22 80 52 66 76 60 86 54 92 50 98 46 92 40 86 34 76 20 52 26 22 50 4Z");
-  const shapes = [maple, maple, maple, oval, birch];
-  const palette = ["#8e2a12", "#a8361a", "#c4511f", "#d9762b", "#e39b3a", "#eebd55", "#b8451c", "#7a1f12"];
+  const lite = matchMedia("(max-width: 820px), (pointer: coarse)").matches
+    || (navigator.hardwareConcurrency || 8) <= 4
+    || navigator.connection?.saveData;
+  document.documentElement.classList.toggle("lite", !!lite);
 
-  let W, H, dpr, leaves = [], sparks = [], wind = 0, windT = 0;
+  const SHAPES = [
+    "M50 2 56 20 66 13 63 33 80 23 76 36 96 37 84 49 92 55 68 62 72 73 54 67 52 98 48 98 46 67 28 73 32 62 8 55 16 49 4 37 24 36 20 23 37 33 34 13 44 20Z",
+    "M50 2C82 24 86 64 50 98 14 64 18 24 50 2Z",
+    "M50 4C74 22 80 52 66 76 60 86 54 92 50 98 46 92 40 86 34 76 20 52 26 22 50 4Z"
+  ];
+  const COLORS = ["#8e2a12", "#a8361a", "#c4511f", "#d9762b", "#e39b3a", "#eebd55", "#b8451c", "#7a1f12"];
+  const SPRITE = lite ? 56 : 96;
 
-  function resize() {
-    dpr = Math.min(devicePixelRatio || 1, 2);
-    W = cv.width = innerWidth * dpr;
-    H = cv.height = innerHeight * dpr;
-    cv.style.width = innerWidth + "px";
-    cv.style.height = innerHeight + "px";
-    const count = Math.round(Math.min(46, innerWidth / 30)) * (reduce ? 0.3 : 1);
-    leaves = Array.from({ length: count }, () => makeLeaf(true));
-    sparks = Array.from({ length: Math.round(count * 1.2) }, makeSpark);
+  // Bir martalik: har bir shakl × rang uchun tayyor rasmcha
+  function makeSprite(path, color, blur) {
+    const pad = blur ? 8 : 2;
+    const c = document.createElement("canvas");
+    c.width = c.height = SPRITE + pad * 2;
+    const g = c.getContext("2d");
+    g.translate(pad, pad);
+    g.scale(SPRITE / 100, SPRITE / 100);
+    if (blur) g.filter = "blur(3px)";
+    g.fillStyle = color;
+    g.fill(new Path2D(path));
+    g.strokeStyle = "rgba(60,15,5,.35)";
+    g.lineWidth = 3;
+    g.beginPath(); g.moveTo(50, 20); g.lineTo(50, 96); g.stroke();
+    return c;
+  }
+  const sprites = [], blurred = [];
+  SHAPES.forEach((p, i) => COLORS.forEach(col => {
+    const weight = i === 0 ? 3 : 1; // chinor bargi ko'proq
+    for (let w = 0; w < weight; w++) {
+      sprites.push(makeSprite(p, col, false));
+      if (!lite && w === 0) blurred.push(makeSprite(p, col, true));
+    }
+  }));
+
+  // Uchqun — bitta tayyor yorug' nuqta
+  const glow = document.createElement("canvas");
+  glow.width = glow.height = 32;
+  {
+    const g = glow.getContext("2d");
+    const grd = g.createRadialGradient(16, 16, 0, 16, 16, 16);
+    grd.addColorStop(0, "rgba(255,226,160,1)");
+    grd.addColorStop(.35, "rgba(255,200,120,.45)");
+    grd.addColorStop(1, "rgba(255,180,90,0)");
+    g.fillStyle = grd;
+    g.fillRect(0, 0, 32, 32);
   }
 
+  let W = 0, H = 0, dpr = 1, items = [], sparks = [], wind = 0, windT = 0;
+  const pick = a => a[(Math.random() * a.length) | 0];
+
   function makeLeaf(anywhere) {
-    const size = (14 + Math.random() * 26) * dpr;
+    const isBlur = blurred.length && Math.random() < 0.15;
+    const size = (lite ? 16 + Math.random() * 18 : 14 + Math.random() * 26) * dpr;
     return {
+      img: isBlur ? pick(blurred) : pick(sprites),
       x: Math.random() * W,
       y: anywhere ? Math.random() * H : -size * 2,
       size,
@@ -112,73 +151,91 @@ musicBtn.addEventListener("click", () => {
       flip: Math.random() * Math.PI * 2,
       vf: 0.01 + Math.random() * 0.03,
       sway: Math.random() * Math.PI * 2,
-      shape: shapes[(Math.random() * shapes.length) | 0],
-      color: palette[(Math.random() * palette.length) | 0],
-      alpha: 0.65 + Math.random() * 0.35,
-      blur: Math.random() < 0.18
+      alpha: 0.65 + Math.random() * 0.35
     };
   }
-
   function makeSpark() {
     return {
       x: Math.random() * W, y: Math.random() * H,
-      r: (0.6 + Math.random() * 2.2) * dpr,
+      r: (3 + Math.random() * 7) * dpr,
       vy: -(0.05 + Math.random() * 0.25) * dpr,
       ph: Math.random() * Math.PI * 2,
       sp: 0.01 + Math.random() * 0.03
     };
   }
 
-  addEventListener("pointermove", e => { wind = (e.clientX / innerWidth - 0.5) * 1.6; });
-
-  function frame() {
-    ctx.clearRect(0, 0, W, H);
-    windT += 0.003;
-    const gust = Math.sin(windT) * 0.6 + wind;
-
-    // oltin uchqunlar
-    for (const s of sparks) {
-      s.y += s.vy; s.ph += s.sp;
-      s.x += Math.sin(s.ph) * 0.2 * dpr;
-      if (s.y < -10) { s.y = H + 10; s.x = Math.random() * W; }
-      const a = 0.25 + Math.sin(s.ph * 2) * 0.25 + 0.2;
-      const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4);
-      g.addColorStop(0, `rgba(255,214,140,${a})`);
-      g.addColorStop(1, "rgba(255,180,90,0)");
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(s.x, s.y, s.r * 4, 0, 7); ctx.fill();
-    }
-
-    // barglar
-    for (const l of leaves) {
-      l.sway += 0.02;
-      l.x += l.vx + Math.sin(l.sway) * 0.7 * dpr + gust * dpr;
-      l.y += l.vy;
-      l.rot += l.vr;
-      l.flip += l.vf;
-      if (l.y > H + l.size * 2 || l.x < -l.size * 3 || l.x > W + l.size * 3) {
-        Object.assign(l, makeLeaf(false), { x: Math.random() * W });
-      }
-      ctx.save();
-      ctx.translate(l.x, l.y);
-      ctx.rotate(l.rot);
-      ctx.scale(Math.cos(l.flip) * (l.size / 100), l.size / 100);
-      ctx.translate(-50, -50);
-      ctx.globalAlpha = l.alpha;
-      ctx.filter = l.blur ? "blur(3px)" : "none";
-      ctx.fillStyle = l.color;
-      ctx.fill(l.shape);
-      ctx.strokeStyle = "rgba(60,15,5,.35)";
-      ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.moveTo(50, 20); ctx.lineTo(50, 96); ctx.stroke();
-      ctx.restore();
-    }
-    ctx.globalAlpha = 1;
-    ctx.filter = "none";
-    requestAnimationFrame(frame);
+  // Telefonda manzil satri yashirilganda balandlik o'zgaradi — buni e'tiborsiz qoldiramiz,
+  // aks holda canvas har skrollda qayta yaratilib, qotish beradi.
+  let lastW = 0, lastH = 0;
+  function resize() {
+    const w = innerWidth, h = innerHeight;
+    if (w === lastW && Math.abs(h - lastH) < 160) return;
+    lastW = w; lastH = h;
+    dpr = Math.min(devicePixelRatio || 1, lite ? 1 : 1.5);
+    W = cv.width = Math.round(w * dpr);
+    H = cv.height = Math.round((h + 120) * dpr);
+    cv.style.width = w + "px";
+    cv.style.height = h + 120 + "px";
+    const base = lite ? Math.min(14, Math.round(w / 28)) : Math.min(40, Math.round(w / 34));
+    const n = Math.max(6, Math.round(base * (reduce ? 0.35 : 1)));
+    items = Array.from({ length: n }, () => makeLeaf(true));
+    sparks = Array.from({ length: lite ? 10 : Math.round(n * 1.1) }, makeSpark);
   }
 
-  addEventListener("resize", resize);
+  if (!lite) addEventListener("pointermove", e => { wind = (e.clientX / innerWidth - 0.5) * 1.6; }, { passive: true });
+
+  let last = performance.now(), running = true;
+  const minFrame = lite ? 1000 / 40 : 0; // telefonda ~40 fps yetarli va batareyani tejaydi
+
+  function frame(now) {
+    if (!running) return;
+    requestAnimationFrame(frame);
+    const elapsed = now - last;
+    if (elapsed < minFrame) return;
+    const k = Math.min(elapsed / 16.67, 3); // kadr tezligidan qat'i nazar bir xil harakat
+    last = now;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    windT += 0.003 * k;
+    const gust = Math.sin(windT) * 0.6 + wind;
+
+    ctx.globalCompositeOperation = "lighter";
+    for (const s of sparks) {
+      s.y += s.vy * k; s.ph += s.sp * k;
+      s.x += Math.sin(s.ph) * 0.2 * dpr * k;
+      if (s.y < -20) { s.y = H + 20; s.x = Math.random() * W; }
+      ctx.globalAlpha = 0.2 + (Math.sin(s.ph * 2) + 1) * 0.25;
+      const d = s.r * 2;
+      ctx.drawImage(glow, s.x - s.r, s.y - s.r, d, d);
+    }
+    ctx.globalCompositeOperation = "source-over";
+
+    for (const l of items) {
+      l.sway += 0.02 * k;
+      l.x += (l.vx + Math.sin(l.sway) * 0.7 * dpr + gust * dpr) * k;
+      l.y += l.vy * k;
+      l.rot += l.vr * k;
+      l.flip += l.vf * k;
+      if (l.y > H + l.size * 2 || l.x < -l.size * 3 || l.x > W + l.size * 3) {
+        Object.assign(l, makeLeaf(false));
+      }
+      const sx = Math.cos(l.flip), cos = Math.cos(l.rot), sin = Math.sin(l.rot);
+      const s = l.size / SPRITE;
+      ctx.setTransform(cos * sx * s, sin * sx * s, -sin * s, cos * s, l.x, l.y);
+      ctx.globalAlpha = l.alpha;
+      ctx.drawImage(l.img, -l.img.width / 2, -l.img.height / 2);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Tab yashirilganda to'xtatamiz
+  document.addEventListener("visibilitychange", () => {
+    running = !document.hidden;
+    if (running) { last = performance.now(); requestAnimationFrame(frame); }
+  });
+
+  addEventListener("resize", resize, { passive: true });
   resize();
   requestAnimationFrame(frame);
 })();
@@ -250,7 +307,11 @@ phoneLink.href = "tel:" + CONFIG.phone.replace(/\s/g, "");
   const img = $("img", box);
   const links = $$(".gallery a");
   let i = 0;
-  const show = n => { i = (n + links.length) % links.length; img.src = links[i].href; };
+  const lite = document.documentElement.classList.contains("lite");
+  const show = n => {
+    i = (n + links.length) % links.length;
+    img.src = lite ? links[i].href.replace("/img/", "/img/m/") : links[i].href;
+  };
   links.forEach((a, n) => a.addEventListener("click", e => {
     e.preventDefault(); show(n); box.hidden = false;
     requestAnimationFrame(() => box.classList.add("show"));

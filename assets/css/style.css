@@ -40,12 +40,13 @@ a { color: inherit; }
 button { font: inherit; cursor: pointer; }
 
 /* ================= Fon sahnasi ================= */
-.scene { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+.scene { position: fixed; inset: 0; z-index: -1; overflow: hidden; contain: strict; transform: translateZ(0); }
 .scene__img {
   position: absolute; inset: -6%;
   background: url("../img/bg-forest.jpg") center / cover no-repeat;
   animation: kenburns 38s ease-in-out infinite alternate;
   filter: saturate(1.25) contrast(1.05);
+  will-change: transform;
 }
 @keyframes kenburns {
   from { transform: scale(1) translate(0, 0); }
@@ -70,10 +71,10 @@ button { font: inherit; cursor: pointer; }
     radial-gradient(ellipse 70% 60% at 0% 80%, rgba(110, 40, 10, .5), transparent 70%),
     linear-gradient(180deg, rgba(30, 12, 4, .25) 0%, rgba(30, 12, 4, .55) 60%, rgba(20, 8, 3, .8) 100%);
 }
-#leaves { position: absolute; inset: 0; }
+#leaves { position: absolute; top: 0; left: 0; pointer-events: none; }
 .scene__vignette {
   position: absolute; inset: 0;
-  box-shadow: inset 0 0 22vmax rgba(10, 4, 1, .85);
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(10, 4, 1, .8) 100%);
   pointer-events: none;
 }
 
@@ -450,6 +451,27 @@ main { position: relative; }
   .dock a { padding: 9px 9px; font-size: 10.5px; }
   .hero__date { gap: 12px; }
 }
+
+/* ================= Telefon / kuchsiz qurilmalar =================
+   Animatsiyali fon ustidagi backdrop-filter, filter va background-position
+   animatsiyalari telefonda har kadrda qayta chiziladi — shu sabab qotadi.
+   Bu yerda ularni yengil muqobillarga almashtiramiz. */
+.lite { --glass: rgba(40, 18, 8, .84); }
+.lite .scene__img { animation: none; inset: 0; filter: none; will-change: auto; background-image: url("../img/m/bg-forest.jpg"); }
+.lite .scene__rays { display: none; }
+.lite .card--glass, .lite .story__item, .lite .dock, .lite .lang, .lite .music, .lite .lightbox {
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.lite .dock, .lite .lang, .lite .music { background: rgba(30, 12, 4, .9); }
+.lite .intro__names, .lite .btn--gold, .lite .section__title, .lite .title-script, .lite .hero__names { animation: none; }
+.lite .section__title, .lite .title-script, .lite .hero__names { filter: none; }
+.lite .seal { animation: none; filter: none; }
+.lite .arch__frame img { animation: none; }
+.lite .arch__frame::after { display: none; }
+.lite .arch__leaves { filter: none; }
+.lite .gallery img, .lite .venue__map iframe { filter: none; }
+.lite .reveal { transform: translateY(24px); transition-duration: .7s; }
+.lite .intro__door { background-image: linear-gradient(rgba(35, 14, 5, .72), rgba(35, 14, 5, .82)), url("../img/m/bg-park.jpg"); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .2s !important; }
