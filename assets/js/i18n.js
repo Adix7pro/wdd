@@ -26,7 +26,7 @@ window.I18N = {
     "count.done": "Bugun — bizning to'yimiz kuni!",
 
     "invite.top": "Bismillahir Rohmanir Rohiym",
-    "invite.title": "Aziz va hurmatli mehmonlar!",
+    "invite.title": "Assalomu alaykum, aziz va hurmatli mehmonlar!",
     "invite.text": "Hayotimizning eng baxtli va unutilmas kunida — farzandlarimiz {groom} va {bride}ning nikoh oqshomi hamda nabiramiz Ibrohimjonning sunnat to'yi munosabati bilan tuziladigan kamtarona dasturxonimizga sizni va oila a'zolaringizni lutfan taklif etib qolamiz. Oltin kuz faslida, yaqinlarimiz davrasida o'tadigan ushbu shohona oqshomni Siz bilan baham ko'rish biz uchun katta sharafdir!",
     "invite.respect": "Hurmat bilan,",
     "invite.hosts": "Choriyevlar oilasi",

@@ -24,6 +24,7 @@ html[data-lang="cyr"] { --script: "Marck Script", "Great Vibes", cursive; --scri
 
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
+#iv { display: none; } /* faqat Telegram Instant View uchun */
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
@@ -451,6 +452,40 @@ main { position: relative; }
   .dock a { padding: 9px 9px; font-size: 10.5px; }
   .hero__date { gap: 12px; }
 }
+
+/* ================= Taklif kartasi bezaklari ================= */
+.card--invite {
+  padding-top: calc(clamp(28px, 5vw, 56px) + 40px);
+  padding-bottom: calc(clamp(28px, 5vw, 56px) + clamp(70px, 12vw, 110px));
+  padding-left: clamp(36px, 7vw, 72px); padding-right: clamp(36px, 7vw, 72px);
+}
+.card--invite > :not(.deco):not(.corner) { position: relative; z-index: 1; }
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.deco-garland { top: 14px; left: 50%; width: min(600px, 88%); height: auto; transform: translateX(-50%); }
+.deco-garland .bulbs circle { fill: #ffd88a; filter: drop-shadow(0 0 4px rgba(255, 196, 90, .9)); animation: twinkle 2.4s ease-in-out infinite; }
+.deco-garland .bulbs circle:nth-child(2n) { animation-delay: -1.2s; }
+.deco-garland .bulbs circle:nth-child(3n) { animation-delay: -.6s; }
+@keyframes twinkle { 50% { opacity: .35; } }
+
+.deco-vine { top: 50%; width: 26px; height: 220px; transform: translateY(-50%); opacity: .85; }
+.deco-vine--l { left: 10px; }
+.deco-vine--r { right: 10px; transform: translateY(-50%) scaleX(-1); }
+
+.kid { bottom: 10px; width: clamp(62px, 11vw, 100px); height: auto; transform-origin: 50% 100%; }
+.kid--groom { left: clamp(14px, 4vw, 40px); animation: sway 4.5s ease-in-out infinite; }
+.kid--bride { right: clamp(14px, 4vw, 40px); animation: sway 4.5s ease-in-out infinite reverse; }
+@keyframes sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+
+.deco-rings { bottom: clamp(18px, 3vw, 30px); left: 50%; width: clamp(56px, 9vw, 80px); height: auto; transform: translateX(-50%); }
+.deco-rings .spark { transform-box: fill-box; transform-origin: center; animation: spark 2.6s ease-in-out infinite; }
+.deco-rings .spark--2 { animation-delay: -1.3s; }
+@keyframes spark { 0%, 100% { transform: scale(.6); opacity: .4; } 50% { transform: scale(1.15); opacity: 1; } }
+
+@media (max-width: 520px) {
+  .deco-vine { width: 18px; height: 160px; opacity: .7; }
+  .deco-vine--l { left: 4px; } .deco-vine--r { right: 4px; }
+}
+.lite .deco-garland .bulbs circle { filter: none; }
 
 /* Xarita: bosilguncha yengil "muqova" */
 .venue__map { position: relative; background:
