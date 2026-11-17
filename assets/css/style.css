@@ -44,7 +44,7 @@ button { font: inherit; cursor: pointer; }
 .scene { position: fixed; inset: 0; z-index: -1; overflow: hidden; contain: strict; transform: translateZ(0); }
 .scene__img {
   position: absolute; inset: -6%;
-  background: url("../img/bg-forest.jpg") center / cover no-repeat;
+  background: url("../img/02-sahifa-fon.jpg") center / cover no-repeat;
   animation: kenburns 38s ease-in-out infinite alternate;
   filter: saturate(1.25) contrast(1.05);
   will-change: transform;
@@ -89,7 +89,7 @@ button { font: inherit; cursor: pointer; }
   position: absolute; top: 0; bottom: 0; width: 50.5%;
   background:
     linear-gradient(rgba(35, 14, 5, .72), rgba(35, 14, 5, .82)),
-    url("../img/bg-park.jpg") center / cover;
+    url("../img/01-kirish-fon.jpg") center / cover;
   transition: transform 1.6s var(--ease);
 }
 .intro__door::after {
@@ -549,7 +549,7 @@ main { position: relative; }
    animatsiyalari telefonda har kadrda qayta chiziladi — shu sabab qotadi.
    Bu yerda ularni yengil muqobillarga almashtiramiz. */
 .lite { --glass: rgba(40, 18, 8, .84); }
-.lite .scene__img { animation: none; inset: 0; filter: none; will-change: auto; background-image: url("../img/m/bg-forest.jpg"); }
+.lite .scene__img { animation: none; inset: 0; filter: none; will-change: auto; background-image: url("../img/m/02-sahifa-fon.jpg"); }
 .lite .scene__rays { display: none; }
 .lite .card--glass, .lite .story__item, .lite .dock, .lite .lang, .lite .music, .lite .lightbox {
   backdrop-filter: none; -webkit-backdrop-filter: none;
@@ -563,7 +563,7 @@ main { position: relative; }
 .lite .arch__leaves { filter: none; }
 .lite .gallery img, .lite .venue__map iframe { filter: none; }
 .lite .reveal { transform: translateY(24px); transition-duration: .7s; }
-.lite .intro__door { background-image: linear-gradient(rgba(35, 14, 5, .72), rgba(35, 14, 5, .82)), url("../img/m/bg-park.jpg"); }
+.lite .intro__door { background-image: linear-gradient(rgba(35, 14, 5, .72), rgba(35, 14, 5, .82)), url("../img/m/01-kirish-fon.jpg"); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .2s !important; }

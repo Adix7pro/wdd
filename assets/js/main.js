@@ -8,7 +8,7 @@ const CONFIG = {
     ar:  { groom: "أدهمجان", bride: "سيوينچخان" }
   },
   // To'y vaqti (Toshkent, UTC+5)
-  date: "2026-11-28T18:00:00+05:00",
+  date: "2026-11-28T17:00:00+05:00",
   durationHours: 5,
   // To'yxona koordinatalari — «Asilbek» to'yxonasi, Yangi Nishon (MP24+P9R)
   venue: { lat: 38.651925, lng: 65.705708 },
